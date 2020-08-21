@@ -14,7 +14,7 @@ export default function Functional() {
     }, [])
 
     useEffect(() => {
-        if(name=='Jane'){
+        if(name==='Jane'){
             console.log('Effect was triggered on state name change to Jane!');
         } else {
             console.log('Effect was triggered on state name change!');
