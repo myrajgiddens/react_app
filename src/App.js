@@ -62,15 +62,15 @@ class App extends React.Component {
 
   fetchQuestions = async () => {
     console.log('fetching!');
-    let results = await fetch('http://localhost:3006/dogs');
-    let dogs = await results.json();
-    console.log(dogs);
-    this.setState({dogs: dogs});
+    let results = await fetch('http://localhost:3006/questions');
+    let questions = await results.json();
+    console.log(questions);
+    this.setState({questions: questions});
   }
 
   fetchAquestion = async (questionId) => {
     console.log(questionId);
-    let result = await fetch(`http://localhost:3006/dogs/${questionId}`);
+    let result = await fetch(`http://localhost:3006/questions/${questionId}`);
     let question = await result.json();
     console.log(question);
   }
@@ -80,14 +80,14 @@ class App extends React.Component {
     this.setState({firstName: event.currentTarget.value});
   }
 
-  updateLastName = (event) => {
+  updateQuestion = (event) => {
     console.log(event.currentTarget.value);
-    this.setState({lastName: event.currentTarget.value});
+    this.setState({question: event.currentTarget.value});
   }
 
   createquestion = async () => {
-    let body = {firstName: this.state.firstName, lastName: this.state.lastName};
-    let result = await fetch(`http://localhost:3006/dogs`, {method: 'POST', body: JSON.stringify(body), headers: {
+    let body = {firstName: this.state.firstName, question: this.state.question};
+    let result = await fetch(`http://localhost:3006/questions`, {method: 'POST', body: JSON.stringify(body), headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }});
@@ -97,7 +97,7 @@ class App extends React.Component {
 
   deleteAquestion = async (questionId) => {
     console.log(questionId);
-    let result = await fetch(`http://localhost:3006/dogs/${questionId}`, {method: 'DELETE'});
+    let result = await fetch(`http://localhost:3006/questions/${questionId}`, {method: 'DELETE'});
     let question = await result.json();
     console.log(question);
   }
@@ -173,11 +173,11 @@ class App extends React.Component {
 
 
 
-            {this.state.dogs && this.state.dogs.map((dog) => {
-              return <div key={dog.id}>
-                <p>{dog.firstName} {dog.lastName}</p>
-                  <button onClick={() => this.fetchAquestion(dog.id)}>Fetch a question</button>&nbsp;
-                  <button onClick={() => this.deleteAquestion(dog.id)}>Delete question</button>
+            {this.state.questions && this.state.questions.map((question) => {
+              return <div key={question.id}>
+                <p>{question.firstName} {question.question}</p>
+                  <button onClick={() => this.fetchAquestion(question.id)}>Fetch a question</button>&nbsp;
+                  <button onClick={() => this.deleteAquestion(question.id)}>Delete question</button>
               </div>
             })}
 
