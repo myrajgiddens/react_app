@@ -80,13 +80,13 @@ class App extends React.Component {
     this.setState({firstName: event.currentTarget.value});
   }
 
-  updateLastName = (event) => {
+  updateQuestionHere = (event) => {
     console.log(event.currentTarget.value);
-    this.setState({lastName: event.currentTarget.value});
+    this.setState({questionHere: event.currentTarget.value});
   }
 
   createquestion = async () => {
-    let body = {firstName: this.state.firstName, lastName: this.state.lastName};
+    let body = {firstName: this.state.firstName, questionHere: this.state.questionHere};
     let result = await fetch(`http://localhost:3006/questions`, {method: 'POST', body: JSON.stringify(body), headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -161,7 +161,7 @@ class App extends React.Component {
            
 
             <input onChange={this.updateFirstName}/>
-            <input onChange={this.updateLastName}/>
+            <input onChange={this.updateQuestionHere}/>
 
 
         
@@ -175,7 +175,7 @@ class App extends React.Component {
 
             {this.state.questions && this.state.questions.map((question) => {
               return <div key={question.id}>
-                <p>{question.firstName} {question.lastName}</p>
+                <p>{question.firstName} {question.questionHere}</p>
                   <button onClick={() => this.fetchAquestion(question.id)}>Fetch a question</button>&nbsp;
                   <button onClick={() => this.deleteAquestion(question.id)}>Delete question</button>
               </div>
