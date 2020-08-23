@@ -129,7 +129,7 @@ class App extends React.Component {
         <div className="App">
           <header className="App-header">
            
-
+          <p className="Title">Enter a Question about Savannah, Georgia!</p>
 
 
 
@@ -160,12 +160,12 @@ class App extends React.Component {
 
            
 
-            <input onChange={this.updateFirstName}/>
-            <input onChange={this.updateQuestionHere}/>
+            <input className="inputBox" placeholder="Enter Your Name Here"onChange={this.updateFirstName}/>
+            <input className="inputBox" placeholder="Enter Your Question Here"onChange={this.updateQuestionHere}/>
 
 
         
-            <button onClick={this.createquestion}>Create a question!</button>
+            <button className="buttonStyle" onClick={this.createquestion}>Create a question!</button>
 
             <br/>
             <br/>
@@ -176,12 +176,12 @@ class App extends React.Component {
             {this.state.questions && this.state.questions.map((question) => {
               return <div key={question.id}>
                 <p>{question.firstName} {question.questionHere}</p>
-                  <button onClick={() => this.fetchAquestion(question.id)}>Fetch a question</button>&nbsp;
-                  <button onClick={() => this.deleteAquestion(question.id)}>Delete question</button>
+                  <button className="buttonStyle" onClick={() => this.fetchAquestion(question.id)}>Fetch a question</button>&nbsp;
+                  <button className="buttonStyle" onClick={() => this.deleteAquestion(question.id)}>Delete question</button>
               </div>
             })}
 
-            <button onClick={this.fetchQuestions}>Show all the questions</button>
+            <button className="buttonStyle" onClick={this.fetchQuestions}>Show all the questions</button>
 
 
            

@@ -12,13 +12,13 @@ function Dashboard() {
     let [formQuestionText, setFormQuestionText] = useState('');
 
     useEffect(() => {
-        // fetch('http://localhost:3006/questions')
-        //     .then((response) => {
-        //         return response.json()
-        //     }).then((data) => {
-        //         setQuestions(data);
-        //     });
-        // setQuestions([{questionText: 'akljsdhkas'}, {questionText: 'akljsdhkas kjahsdkjhs'}])
+         fetch('http://localhost:3006/questions')
+             .then((response) => {
+                 return response.json()
+             }).then((data) => {
+                 setQuestions(data);
+            });
+        setQuestions([{questionText: 'akljsdhkas'}, {questionText: 'akljsdhkas kjahsdkjhs'}])
         setQuestions([{questionText: 'this is a cat 1 question', category: 1}, {questionText: 'this is a cat 2 question', category: 2}])
     }, [])
 
@@ -41,24 +41,24 @@ function Dashboard() {
         currentQuestions.push(obj);
         setQuestions(currentQuestions);
 
-        // perform a fetch request here
-        // POST /questions
+       // perform a fetch request here
+       // POST /questions
 
-        // let body = JSON.stringify({questionText: formQuestionText});
-        //
-        // let res = await fetch('http://localhost:3006/questions', {method: 'POST', body: body});
-        // let json = await res.json();
-        // console.log(json)
-        //
-        // res = await fetch('http://localhost:3006/questions');
-        // questions = await res.json();
-        // setQuestions(questions);
+        let body = JSON.stringify({questionText: formQuestionText});
+        
+        let res = await fetch('http://localhost:3006/questions', {method: 'POST', body: body});
+        let json = await res.json();
+        console.log(json)
+        
+        res = await fetch('http://localhost:3006/questions');
+        questions = await res.json();
+        setQuestions(questions);
 
 
-        // show success notification
-        // cleanup etc
+      //  show success notification
+      //  cleanup etc
 
-        // reset the form
+       // reset the form
 
         setFormQuestionText('');
 

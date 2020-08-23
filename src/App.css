@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #539371;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #1D3F2D;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +35,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Title {
+  font-size: 50px; 
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+
+.inputBox {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.buttonStyle {
+  width: 30%;
+  background-color: #565656;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 }
