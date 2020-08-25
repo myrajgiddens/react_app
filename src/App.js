@@ -77,16 +77,21 @@ class App extends React.Component {
 
   updateFirstName = (event) => {
     console.log(event.currentTarget.value);
-    this.setState({firstName: event.currentTarget.value});
+    this.setState({firstName: 'Name: ' + '' + event.currentTarget.value});
   }
 
   updateQuestionHere = (event) => {
     console.log(event.currentTarget.value);
-    this.setState({questionHere: event.currentTarget.value});
+    this.setState({questionHere: 'Question: ' + '' + event.currentTarget.value});
+  }
+
+   updateCategoryName = (event) => {
+    console.log(event.currentTarget.value);
+    this.setState({categoryName: 'Category: ' + '' + event.currentTarget.value});
   }
 
   createquestion = async () => {
-    let body = {firstName: this.state.firstName, questionHere: this.state.questionHere};
+    let body = {firstName: this.state.firstName, questionHere: this.state.questionHere, categoryName: this.state.categoryName};
     let result = await fetch(`http://localhost:3006/questions`, {method: 'POST', body: JSON.stringify(body), headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -162,7 +167,7 @@ class App extends React.Component {
 
             <input className="inputBox" placeholder="Enter Your Name Here"onChange={this.updateFirstName}/>
             <input className="inputBox" placeholder="Enter Your Question Here"onChange={this.updateQuestionHere}/>
-
+            <input className="inputBox" placeholder="Enter Category: Food, Sightseeing, Beaches" onChange={this.updateCategoryName}/>
 
         
             <button className="buttonStyle" onClick={this.createquestion}>Create a question!</button>
@@ -175,7 +180,7 @@ class App extends React.Component {
 
             {this.state.questions && this.state.questions.map((question) => {
               return <div key={question.id}>
-                <p>{question.firstName} {question.questionHere}</p>
+                <p>{question.firstName} <br /><br /> {question.questionHere} <br /><br /> {question.categoryName} <br /><br /></p>
                   <button className="buttonStyle" onClick={() => this.fetchAquestion(question.id)}>Fetch a question</button>&nbsp;
                   <button className="buttonStyle" onClick={() => this.deleteAquestion(question.id)}>Delete question</button>
               </div>
