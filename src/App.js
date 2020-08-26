@@ -68,6 +68,14 @@ class App extends React.Component {
     this.setState({questions: questions});
   }
 
+  fetchCategories = async () => {
+    console.log('fetching!');
+    let results = await fetch('http://localhost:3006/questions');
+    let categories = await results.json();
+    console.log(categories);
+    this.setState({categories: categories});
+  }
+
   fetchAquestion = async (questionId) => {
     console.log(questionId);
     let result = await fetch(`http://localhost:3006/questions/${questionId}`);
@@ -85,7 +93,7 @@ class App extends React.Component {
     this.setState({questionHere: 'Question: ' + '' + event.currentTarget.value});
   }
 
-   updateCategoryName = (event) => {
+  updateCategoryName = (event) => {
     console.log(event.currentTarget.value);
     this.setState({categoryName: 'Category: ' + '' + event.currentTarget.value});
   }
@@ -134,9 +142,7 @@ class App extends React.Component {
         <div className="App">
           <header className="App-header">
            
-          <p className="Title">Enter a Question about Savannah, Georgia!</p>
-
-
+            <p className="Title">Enter a Question about Savannah, Georgia!</p>
 
             <BrowserRouter>
               <div>
@@ -180,16 +186,15 @@ class App extends React.Component {
 
             {this.state.questions && this.state.questions.map((question) => {
               return <div key={question.id}>
-                <p>{question.firstName} <br /><br /> {question.questionHere} <br /><br /> {question.categoryName} <br /><br /></p>
+                <p>{question.firstName} <br /><br /> {question.questionHere} <br /><br /> {question.categoryName} <br /></p>
                   <button className="buttonStyle" onClick={() => this.fetchAquestion(question.id)}>Fetch a question</button>&nbsp;
                   <button className="buttonStyle" onClick={() => this.deleteAquestion(question.id)}>Delete question</button>
               </div>
             })}
 
+                   
+
             <button className="buttonStyle" onClick={this.fetchQuestions}>Show all the questions</button>
-
-
-           
           </header>
         </div>
     );
@@ -209,7 +214,7 @@ export default App
 
 
 
-// import React from 'react';
+///import React from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 //
